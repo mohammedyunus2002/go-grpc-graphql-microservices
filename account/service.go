@@ -9,7 +9,7 @@ import (
 type Service interface {
 	PostAccount(ctx context.Context, name string) (*Account, error)
 	GetAccount(ctx context.Context, id string) (*Account, error)
-	GetAccounts(ctx context.Context, skip uint64) ([]Account, error)
+	GetAccounts(ctx context.Context, skip uint64, take uint64) ([]Account, error)
 }
 
 type Account struct {
@@ -21,7 +21,7 @@ type accountService struct {
 	repository Repository
 }
 
-func newService(r Repository) Service {
+func NewService(r Repository) Service {
 	return &accountService{r}
 }
 
